@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!--
+    <appender name="JSONFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <fieldName>timestamp</fieldName>
+                </timestamp>
+                <message>
+                    <fieldName>message</fieldName>
+                </message>
+                <rawMessage>
+                    <fieldName>raw_message</fieldName>
+                </rawMessage>
+                <arguments>
+                    <includeNonStructuredArguments>true</includeNonStructuredArguments>
+                </arguments>
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                </loggerName>
+                <threadName>
+                    <fieldName>thread</fieldName>
+                </threadName>
+                <logLevel>
+                    <fieldName>severity</fieldName>
+                </logLevel>
+                <stackTrace>
+                    <fieldName>stacktrace</fieldName>
+                </stackTrace>
+                <mdc />
+                <logstashMarkers />
+                <tags/>
+            </providers>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>C:/test-logs/json-logfile-%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+            <maxHistory>6</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+    </appender>
+    -->
+
+    <appender name="JSONCONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <jsonGeneratorDecorator class="net.batkin.test.PrettyPrintingDecorator" />
+            <providers>
+                <timestamp>
+                    <fieldName>timestamp</fieldName>
+                </timestamp>
+                <message>
+                    <fieldName>message</fieldName>
+                </message>
+                <rawMessage>
+                    <fieldName>raw_message</fieldName>
+                </rawMessage>
+                <arguments>
+                    <includeNonStructuredArguments>true</includeNonStructuredArguments>
+                </arguments>
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                </loggerName>
+                <threadName>
+                    <fieldName>thread</fieldName>
+                </threadName>
+                <logLevel>
+                    <fieldName>severity</fieldName>
+                </logLevel>
+                <stackTrace>
+                    <fieldName>stacktrace</fieldName>
+                </stackTrace>
+                <mdc />
+                <logstashMarkers />
+                <tags/>
+            </providers>
+        </encoder>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <!--<appender-ref ref="CONSOLE"/>-->
+        <appender-ref ref="JSONCONSOLE"/>
+        <!--<appender-ref ref="JSONFILE"/>-->
+    </root>
+</configuration>
